@@ -1,0 +1,513 @@
+.版本 2
+
+.DLL命令 Sunny_Start, 整数型, "Sunny.dll", "@PInit", , 设置端口 并启动 成功返回1失败返回0,可调用 Geterr 来查看错误信息
+    .参数 port, 整数型, , 绑定端口
+    .参数 callback, 整数型, , 回调子程序地址
+    .参数 是否自动安装证书, 逻辑型, , 如果本命令返回1 可通过 Sunny_GetErr 查询确认证书是否已安装
+    .参数 是否自动设置IE代理, 逻辑型
+
+.DLL命令 Sunny_Cancel_IE_Proxy, , "Sunny.dll", "@SetIeProxy", , 取消IE代理
+    .参数 是否取消IE代理, 逻辑型
+
+.DLL命令 Sunny_GetResponseStatusCode, 整数型, "Sunny.dll", "@GetResponseStatusCode", , 获取返回状态码
+    .参数 MessageId, 整数型
+
+.DLL命令 Sunny_SetRequestProxy, , "Sunny.dll", "@SetRequestProxy", , 对指定链接使用代理
+    .参数 MessageId, 整数型
+    .参数 ip, 文本型, , 127.0.0.1:8888
+    .参数 auth, 文本型, , 账号:密码
+    .参数 timeout, 整数型, , 超时时间
+
+.DLL命令 Sunny_SetCa, , "Sunny.dll", "@SetCa", , 设置Ca证书
+    .参数 证书管理器, 整数型
+
+.DLL命令 Sunny_GetErr, 文本型, "Sunny.dll", "@Geterr", , 获取错误信息
+
+.DLL命令 Sunny_Stop, , "Sunny.dll", "@Stop", , 停止，可调用 Geterr 来查看有无错误信息,一般来说，本命令不会出现错误
+
+.DLL命令 Sunny_GetResponseHeader, 文本型, "Sunny.dll", "@GetResponseHeader", , 获取返回数据中的一个协议头
+    .参数 MessageId, 整数型, , 会话ID
+    .参数 name, 文本型, , 名称
+
+.DLL命令 Sunny_SetRequestUrl, , "Sunny.dll", "@SetRequestUrl", , 修改请求Url
+    .参数 MessageId, 整数型, , 会话ID
+    .参数 Url, 文本型, , Url
+
+.DLL命令 Sunny_DelResponseHeader, , "Sunny.dll", "@DelResponseHeader", , 从返回数据中删除一个Head
+    .参数 MessageId, 整数型, , 会话ID
+    .参数 name, 文本型, , 协议头值
+
+.DLL命令 Sunny_DelRequestHeader, , "Sunny.dll", "@DelRequestHeader", , 从提交的协议头中删除一个Head
+    .参数 MessageId, 整数型, , 会话ID
+    .参数 name, 文本型, , 协议头值
+
+.DLL命令 Sunny_SetRequestHeader, , "Sunny.dll", "@SetRequestHeader", , 设置请求协议头
+    .参数 MessageId, 整数型, , 会话ID
+    .参数 name, 文本型, , 协议头名称
+    .参数 val, 文本型, , 协议头值
+
+.DLL命令 Sunny_SetRequestCookie, , "Sunny.dll", "@SetRequestCookie", , 设置请求Cookie
+    .参数 MessageId, 整数型, , 会话ID
+    .参数 name, 文本型, , Cookie名称
+    .参数 val, 文本型, , Cookie值
+
+.DLL命令 Sunny_SetResponseHeader, , "Sunny.dll", "@SetResponseHeader", , 设置返回Head
+    .参数 MessageId, 整数型, , 会话ID
+    .参数 name, 文本型, , Head名称
+    .参数 val, 文本型, , Head值
+
+.DLL命令 Sunny_SetResponseAllHeader, , "Sunny.dll", "@SetResponseAllHeader", , 设置返回全部Head
+    .参数 MessageId, 整数型, , 会话ID
+    .参数 value, 文本型
+
+.DLL命令 Sunny_SetResponseStatus, , "Sunny.dll", "@SetResponseStatus", , 修改返回状态码
+    .参数 MessageId, 整数型, , 会话ID
+    .参数 code, 整数型
+
+.DLL命令 Sunny_SetRequestAllCookie, , "Sunny.dll", "@SetRequestAllCookie", , 设置请求全部Cookies 例如 a=1;b=2;c=3
+    .参数 MessageId, 整数型, , 会话ID
+    .参数 val, 文本型, , Cookie值
+
+.DLL命令 Sunny_GetRequestHeader, 文本型, "Sunny.dll", "@GetRequestHeader", , 获取请求头Head
+    .参数 MessageId, 整数型, , 会话ID
+    .参数 name, 文本型, , 协议头名称
+
+.DLL命令 Sunny_GetRequestCookie, 文本型, "Sunny.dll", "@GetRequestCookie", , 获取请求Cookie
+    .参数 MessageId, 整数型, , 会话ID
+    .参数 name, 文本型, , Cookie名称
+
+.DLL命令 Sunny_GetRequestData, 文本型, "Sunny.dll", "@GetRequestData", , 获取请求Data
+    .参数 MessageId, 整数型, , 会话ID
+
+.DLL命令 Sunny_GetResponseData, 文本型, "Sunny.dll", "@GetResponseData", , 获取请求Data
+    .参数 MessageId, 整数型, , 会话ID
+
+.DLL命令 Sunny_SetRequestData, 整数型, "Sunny.dll", "@SetRequestData", , 设置请求Data,返回0 失败 返回1成功
+    .参数 MessageId, 整数型, , 会话ID
+    .参数 val, 字节集, , 设置值
+    .参数 len, 整数型
+
+.DLL命令 Sunny_SetResponseData, 整数型, "Sunny.dll", "@SetResponseData", , 设置返回数据Data,返回0 失败 返回1成功
+    .参数 MessageId, 整数型, , 会话ID
+    .参数 val, 字节集, , 设置值
+    .参数 len, 整数型
+
+.DLL命令 Sunny_GetResponseBody, 整数型, "Sunny.dll", "@GetResponseBody", , 获取返回Body 返回字节集指针 失败返回0
+    .参数 MessageId, 整数型, , 会话ID
+
+.DLL命令 Sunny_GetRequestBody, 整数型, "Sunny.dll", "@GetRequestBody", , 获取请求Body 返回字节集指针 失败返回0
+    .参数 MessageId, 整数型, , 会话ID
+
+.DLL命令 Sunny_GetRequestBodyLen, 整数型, "Sunny.dll", "@GetRequestBodyLen", , 获取请求Body长度
+    .参数 MessageId, 整数型, , 会话ID
+
+.DLL命令 Sunny_GetResponseBodyLen, 整数型, "Sunny.dll", "@GetResponseBodyLen", , 获取返回Body长度
+    .参数 MessageId, 整数型, , 会话ID
+
+.DLL命令 Sunny_GetRequestAllHeader, 文本型, "Sunny.dll", "@GetRequestAllHeader", , 获取请求所有请求头
+    .参数 MessageId, 整数型, , 会话ID
+
+.DLL命令 Sunny_GetRequestALLCookie, 文本型, "Sunny.dll", "@GetRequestALLCookie", , 获取请求所有Cookie
+    .参数 MessageId, 整数型, , 会话ID
+
+.DLL命令 Sunny_GetResponseAllHeader, 文本型, "Sunny.dll", "@GetResponseAllHeader", , 获取返回全部Head
+    .参数 MessageId, 整数型, , 会话ID
+
+.DLL命令 Sunny_GetWebsocketBodyLen, 整数型, "Sunny.dll", "@GetWebsocketBodyLen", , 获取Websocket消息长度
+    .参数 MessageId, 整数型, , 会话ID
+
+.DLL命令 Sunny_GetWebsocketBody, 整数型, "Sunny.dll", "@GetWebsocketBody", , 获取Websocket消息 返回指针
+    .参数 MessageId, 整数型, , 会话ID
+
+.DLL命令 Sunny_SetWebsocketBody, 整数型, "Sunny.dll", "@SetWebsocketBody", , 修改Msg消息
+    .参数 MessageId, 整数型, , 会话ID
+    .参数 值, 字节集
+    .参数 长度, 整数型
+
+.DLL命令 Sunny_SendWebsocketBody, 逻辑型, "Sunny.dll", "@SendWebsocketBody"
+    .参数 MessageId, 整数型
+    .参数 消息类型, 整数型
+    .参数 值, 字节集
+    .参数 长度, 整数型
+
+.DLL命令 Sunny_开启过滤选项, , "Sunny.dll", "@NoticeTheRequest"
+    .参数 val, 逻辑型
+
+.DLL命令 Sunny_开启TCP拦截, , "Sunny.dll", "@OpenTcp", , 本命令在启动之前调用，如果开启TCP拦截的同时 启动(Sunny_Start)命令的的二个参数（回调地址）请填写为0
+    .参数 callback, 整数型, , TCP拦截的回调地址
+
+.DLL命令 Sunny_SetIpProxy, , "Sunny.dll", "@SetIpProxy", , 设置上游代理,启动之前调用
+    .参数 ip, 文本型, , 代理IP
+
+.DLL命令 Sunny_GetResponseStatus, 文本型, "Sunny.dll", "@GetResponseStatus", , 获取返回的状态文本
+    .参数 MessageId, 整数型
+
+.DLL命令 Sunny_SetIpAuth, , "Sunny.dll", "@SetIpAuth", , 设置上游代理账号信息
+    .参数 auth, 文本型, , 代理IP 账号:密码
+
+.DLL命令 Sunny_SetProxyTimeout, , "Sunny.dll", "@SetProxyTimeout", , 设置上游代理超时
+    .参数 timeout, 整数型, , 超时 秒
+
+.DLL命令 Sunny_设置Tcp消息, 整数型, "Sunny.dll", "@SetTcpBody"
+    .参数 消息唯一id, 整数型
+    .参数 消息类型, 整数型
+    .参数 消息值, 字节集
+    .参数 len, 整数型
+
+.DLL命令 HexDump, 文本型, "Sunny.dll", "@HexDump"
+    .参数 值, 字节集
+    .参数 长度, 整数型
+
+.DLL命令 Sunny_StartProcess, 逻辑型, "Sunny.dll", "@StartProcess", , [仅Windows有效]
+
+.DLL命令 Sunny_ProcessAddPID, 逻辑型, "Sunny.dll", "@ProcessAddPID", , [仅Windows有效]
+    .参数 PID, 整数型
+
+.DLL命令 Sunny_ProcessDelPID, 逻辑型, "Sunny.dll", "@ProcessDelPID", , [仅Windows有效]
+    .参数 PID, 整数型
+
+.DLL命令 Sunny_ProcessCancelAll, 逻辑型, "Sunny.dll", "@ProcessCancelAll", , [仅Windows有效]
+
+.DLL命令 Sunny_ProcessStart, 逻辑型, "Sunny.dll", "@ProcessStart", , [仅Windows有效]
+
+.DLL命令 Sunny_设置Tcp连接IP, 逻辑型, "Sunny.dll", "@SetTcpConnectionIP", , 仅在 消息类型=4 时 有效
+    .参数 MessageId, 整数型
+    .参数 新IP, 文本型
+
+.DLL命令 Sunny_Tcp主动发送消息到服务器, 整数型, "Sunny.dll", "@TcpSendMsg"
+    .参数 唯一id, 整数型
+    .参数 data, 字节集
+    .参数 datalen, 整数型
+
+.DLL命令 sunny_BrUnCompress, 整数型, "Sunny.dll", "@BrUnCompress", , 返回文本指针
+    .参数 bin, 字节集
+    .参数 len, 整数型
+
+.DLL命令 sunny_GzipUnCompress, 整数型, "Sunny.dll", "@GzipUnCompress", , 返回文本指针 失败返回0
+    .参数 bin, 字节集
+    .参数 len, 整数型
+
+.DLL命令 sunny_DeflateUnCompress, 整数型, "Sunny.dll", "@DeflateUnCompress", , 返回文本指针 失败返回0
+    .参数 bin, 字节集
+    .参数 len, 整数型
+
+.DLL命令 sunny_BytesToInt, 整数型, "Sunny.dll", "@BytesToInt"
+    .参数 bin, 字节集
+    .参数 len, 整数型
+
+.DLL命令 Sunny_Tcp主动发送消息到客户端, 整数型, "Sunny.dll", "@TcpSendMsgClient"
+    .参数 唯一id, 整数型
+    .参数 data, 字节集
+    .参数 datalen, 整数型
+
+.DLL命令 DLL命令1
+
+.DLL命令 sunny_free_Go_Pointer, , "Sunny.dll", "@Cfree"
+    .参数 指针
+
+.DLL命令 Sunny_CreateKeys, 整数型, "Sunny.dll", "@CreateKeys", , 创建一个MAP
+
+.DLL命令 Sunny_RemoveKeys, , "Sunny.dll", "@RemoveKeys", , 移除一个MAP
+    .参数 KeysHandle, 整数型, , 通过 CreateKeys() 获得
+
+.DLL命令 Sunny_KeysWriteLong, , "Sunny.dll", "@KeysWriteLong", , 写MAP
+    .参数 KeysHandle, 整数型, , 通过 CreateKeys() 获得
+    .参数 name, 文本型, , 要写入的名称
+    .参数 val, 长整数型, , 要写入的值
+
+.DLL命令 Sunny_KeysWrite, , "Sunny.dll", "@KeysWrite", , 写MAP
+    .参数 KeysHandle, 整数型, , 通过 CreateKeys() 获得
+    .参数 name, 文本型, , 要写入的名称
+    .参数 val, 字节集, , 要写入的值
+    .参数 len, 整数型
+
+.DLL命令 Sunny_KeysWriteStr, , "Sunny.dll", "@KeysWriteStr", , 写MAP
+    .参数 KeysHandle, 整数型, , 通过 CreateKeys() 获得
+    .参数 name, 文本型, , 要写入的名称
+    .参数 val, 字节集, , 要写入的值
+    .参数 len, 整数型
+
+.DLL命令 Sunny_KeysWriteFloat, , "Sunny.dll", "@KeysWriteFloat", , 写MAP
+    .参数 KeysHandle, 整数型, , 通过 CreateKeys() 获得
+    .参数 name, 文本型, , 要写入的名称
+    .参数 val, 双精度小数型, , 要写入的值
+
+.DLL命令 Sunny_KeysWriteInt, , "Sunny.dll", "@KeysWriteInt", , 写MAP
+    .参数 KeysHandle, 整数型, , 通过 CreateKeys() 获得
+    .参数 name, 文本型, , 要写入的名称
+    .参数 val, 整数型, , 要写入的值
+
+.DLL命令 Sunny_KeysReadInt, 整数型, "Sunny.dll", "@KeysReadInt", , 读MAP
+    .参数 KeysHandle, 整数型, , 通过 CreateKeys() 获得
+    .参数 name, 文本型, , 要读取的名称
+
+.DLL命令 Sunny_KeysReadLong, 长整数型, "Sunny.dll", "@KeysReadLong", , 读MAP
+    .参数 KeysHandle, 整数型, , 通过 CreateKeys() 获得
+    .参数 name, 文本型, , 要读取的名称
+
+.DLL命令 Sunny_KeysReadFloat, 双精度小数型, "Sunny.dll", "@KeysReadFloat", , 读MAP
+    .参数 KeysHandle, 整数型, , 通过 CreateKeys() 获得
+    .参数 name, 文本型, , 要读取的名称
+
+.DLL命令 Sunny_KeysRead, 整数型, "Sunny.dll", "@KeysRead", , 读MAP
+    .参数 KeysHandle, 整数型, , 通过 CreateKeys() 获得
+    .参数 name, 文本型, , 要读取的名称
+    .参数 p, 整数型, 传址
+
+.DLL命令 Sunny_KeysEmpty, , "Sunny.dll", "@KeysEmpty"
+    .参数 KeysHandle, 整数型, , 通过 CreateKeys() 获得
+    .参数 name, 整数型
+    .参数 p, 整数型
+
+.DLL命令 Sunny_KeysDelete, , "Sunny.dll", "@KeysDelete", , 删除MAP成员
+    .参数 KeysHandle, 整数型, , 通过 CreateKeys() 获得
+    .参数 name, 文本型, , 要删除的名称
+
+.DLL命令 Sunny_KeysGetJson, 整数型, "Sunny.dll", "@KeysGetJson"
+    .参数 Context, 整数型
+
+.DLL命令 Sunny_Ptr_Cfree, , "Sunny.dll", "@Cfree", , 释放字符串
+    .参数 指针, 整数型
+
+.DLL命令 Sunny_AddP12Certificate, 逻辑型, "Sunny.dll", "@AddP12Certificate"
+    .参数 域名, 文本型
+    .参数 p12证书路径, 文本型
+    .参数 证书密码, 文本型
+    .参数 使用规则, 整数型
+
+.DLL命令 Sunny_WebpToPngBytes, 整数型, "Sunny.dll", "@WebpToPngBytes"
+    .参数 webp, 字节集
+    .参数 len, 整数型
+
+.DLL命令 Sunny_DelP12Certificate, , "Sunny.dll", "@DelP12Certificate"
+    .参数 域名, 文本型
+
+.DLL命令 Sunny_WebpToJpegBytes, 整数型, "Sunny.dll", "@WebpToJpegBytes"
+    .参数 webp, 字节集
+    .参数 len, 整数型
+    .参数 质量, 整数型, , 1-100 默认75
+
+.DLL命令 Sunny_WebpToPng, 逻辑型, "Sunny.dll", "@WebpToPng"
+    .参数 文件路径, 文本型, , c:\123.webp
+    .参数 保存路径, 文本型, , c:\123.png
+
+.DLL命令 Sunny_WebpToJpeg, 逻辑型, "Sunny.dll", "@WebpToJpeg"
+    .参数 文件路径, 文本型, , c:\123.webp
+    .参数 保存路径, 文本型, , c:\123.png
+    .参数 质量, 整数型, , 1-100 默认75
+
+.DLL命令 Sunny_CreateCertificateManager, 整数型, "Sunny.dll", "@CreateCertificate"
+
+.DLL命令 Sunny_RemoveCertificateManager, , "Sunny.dll", "@RemoveCertificate"
+    .参数 Context, 整数型
+
+.DLL命令 Sunny_LoadP12Certificate, 逻辑型, "Sunny.dll", "@LoadP12Certificate"
+    .参数 Context, 整数型
+    .参数 P12证书路径, 文本型
+    .参数 P12证书密码, 文本型
+
+.DLL命令 Sunny_LoadX509KeyPair, 逻辑型, "Sunny.dll", "@LoadX509KeyPair"
+    .参数 Context, 整数型
+    .参数 cert文件路径, 文本型
+    .参数 key文件路径, 文本型
+
+.DLL命令 Sunny_LoadX509Certificate, 逻辑型, "Sunny.dll", "@LoadX509Certificate"
+    .参数 Context, 整数型
+    .参数 host, 文本型
+    .参数 cert文件内容, 文本型
+    .参数 key文件内容, 文本型
+
+.DLL命令 Sunny_SetInsecureSkipVerify, 逻辑型, "Sunny.dll", "@SetInsecureSkipVerify"
+    .参数 Context, 整数型
+    .参数 b, 逻辑型
+
+.DLL命令 Sunny_SetServerName, 逻辑型, "Sunny.dll", "@SetServerName"
+    .参数 Context, 整数型
+    .参数 n, 文本型
+
+.DLL命令 Sunny_GetServerName, 整数型, "Sunny.dll", "@GetServerName"
+    .参数 Context, 整数型
+
+.DLL命令 Sunny_AddCertPoolPath, 逻辑型, "Sunny.dll", "@AddCertPoolPath"
+    .参数 Context, 整数型
+    .参数 crt, 文本型, , 信任的证书文件名
+
+.DLL命令 Sunny_AddCertPoolText, 逻辑型, "Sunny.dll", "@AddCertPoolText"
+    .参数 Context, 整数型
+    .参数 crtText, 文本型, , 信任的证书文件内容
+
+.DLL命令 Sunny_AddClientAuth, 逻辑型, "Sunny.dll", "@AddClientAuth"
+    .参数 Context, 整数型
+    .参数 val, 整数型, , 0-4 使用 #SSL_ClientAuth_
+
+.DLL命令 Sunny_CreateCA, 逻辑型, "Sunny.dll", "@CreateCA"
+    .参数 Context, 整数型
+    .参数 证书所属的国家, 文本型
+    .参数 证书存放的公司名称, 文本型
+    .参数 证书所属的部门名称, 文本型
+    .参数 证书签发机构所在省, 文本型
+    .参数 证书域名, 文本型
+    .参数 证书签发机构所在市, 文本型
+    .参数 密钥长度, 整数型
+    .参数 到期时间, 整数型
+
+.DLL命令 Sunny_ExportPub, 整数型, "Sunny.dll", "@ExportPub"
+    .参数 CertificateContext, 整数型
+
+.DLL命令 Sunny_ExportKEY, 整数型, "Sunny.dll", "@ExportKEY"
+    .参数 CertificateContext, 整数型
+
+.DLL命令 Sunny_ExportP12, 逻辑型, "Sunny.dll", "@ExportP12"
+    .参数 CertificateContext, 整数型
+    .参数 路径, 文本型
+    .参数 密码, 文本型
+
+.DLL命令 Sunny_ExportCA, 整数型, "Sunny.dll", "@ExportCA"
+    .参数 CertificateContext, 整数型
+
+.DLL命令 Sunny_Http_HTTPGetCode, 整数型, "Sunny.dll", "@HTTPGetCode", , 返回响应状态码
+    .参数 Context, 整数型
+
+.DLL命令 Sunny_Http_HTTPGetBody, 整数型, "Sunny.dll", "@HTTPGetBody", , 返回响应状态码
+    .参数 Context, 整数型
+
+.DLL命令 Sunny_Http_HTTPGetHeads, 整数型, "Sunny.dll", "@HTTPGetHeads", , 返回响应全部Heads
+    .参数 Context, 整数型
+
+.DLL命令 Sunny_Http_HTTPGetBodyLen, 整数型, "Sunny.dll", "@HTTPGetBodyLen", , 返回响应长度
+    .参数 Context, 整数型
+
+.DLL命令 Sunny_Http_HTTPSendBin, , "Sunny.dll", "@HTTPSendBin", , 发送Body
+    .参数 Context, 整数型
+    .参数 值, 字节集
+    .参数 长度, 整数型
+
+.DLL命令 Sunny_Http_HTTPSetTimeouts, , "Sunny.dll", "@HTTPSetTimeouts", , 设置超时 毫秒
+    .参数 Context, 整数型
+    .参数 连接超时, 整数型, , 超时时间，毫秒
+    .参数 发送超时, 整数型, , 超时时间，毫秒
+    .参数 接收超时, 整数型, , 超时时间，毫秒
+
+.DLL命令 Sunny_Http_HTTPSetProxyBasicAuth, , "Sunny.dll", "@HTTPSetProxyBasicAuth", , 设置代理IP 账号密码
+    .参数 Context, 整数型
+    .参数 user, 文本型
+    .参数 pass, 文本型
+
+.DLL命令 Sunny_Http_HTTPSetProxyIP, , "Sunny.dll", "@HTTPSetProxyIP", , 设置代理IP 127.0.0.1:8888
+    .参数 Context, 整数型
+    .参数 ip, 文本型
+
+.DLL命令 Sunny_Http_HTTPSetHeader, , "Sunny.dll", "@HTTPSetHeader", , 设置协议头
+    .参数 Context, 整数型
+    .参数 name, 文本型
+    .参数 value, 文本型
+
+.DLL命令 Sunny_Http_HTTPOpen, , "Sunny.dll", "@HTTPOpen"
+    .参数 Context, 整数型
+    .参数 methods, 文本型, , post get
+    .参数 Url, 文本型
+
+.DLL命令 Sunny_Http_HTTPClientGetErr, 文本型, "Sunny.dll", "@HTTPClientGetErr", , 取错误
+    .参数 Context, 整数型
+
+.DLL命令 Sunny_Http_RemoveHTTPClient, , "Sunny.dll", "@RemoveHTTPClient", , 释放 HTTP客户端
+    .参数 Context, 整数型
+
+.DLL命令 Sunny_Http_CreateHTTPClient, 整数型, "Sunny.dll", "@CreateHTTPClient", , 创建 HTTP 客户端
+
+.DLL命令 Sunny_CreateSocketClient, 整数型, "Sunny.dll", "@CreateSocketClient", , 创建一个SocketClient客户端 可用于WS/WSS
+
+.DLL命令 Sunny_RemoveSocketClient, , "Sunny.dll", "@RemoveSocketClient", , 移除SocketClient客户端
+    .参数 Context
+
+.DLL命令 Sunny_SocketClientDial, 逻辑型, "Sunny.dll", "@SocketClientDial", , SocketClient客户端连接
+    .参数 Context
+    .参数 地址, 文本型, , 127.0.0.1:8888
+    .参数 回调地址, 整数型
+    .参数 istls, 逻辑型
+    .参数 是否同步模式, 逻辑型, , 设置为真 回调地址 将 无效
+    .参数 ProxyIP, 文本型, , S5代理 格式127.0.0.1:8888
+    .参数 ProxyUser, 文本型, , S5代理账号 可以为空
+    .参数 ProxyPass, 文本型, , S5代理密码 可以为空
+    .参数 Sunny证书管理器Context, 整数型, , Sunny证书管理器Context
+
+.DLL命令 Sunny_SocketClientClose, , "Sunny.dll", "@SocketClientClose", , SocketClient客户端 断开连接
+    .参数 Context
+
+.DLL命令 Sunny_SocketClientGetErr, 文本型, "Sunny.dll", "@SocketClientGetErr", , SocketClient客户端 取错误信息
+    .参数 Context
+
+.DLL命令 Sunny_SocketClientWrite, 整数型, "Sunny.dll", "@SocketClientWrite", , SocketClient客户端 发送数据，返回发送成功的字节数
+    .参数 Context
+    .参数 超时时间, 整数型, , 写入超时时间,单位，毫秒 默认30000 /30秒
+    .参数 bin, 字节集
+    .参数 len, 整数型
+
+.DLL命令 Sunny_SocketClientReceive, 整数型, "Sunny.dll", "@SocketClientReceive", , SocketClient客户端【同步模式】读取信息
+    .参数 Context
+    .参数 超时时间, 整数型, , 毫秒。默认100
+    .参数 len, 整数型, 传址, 返回数据长度
+
+.DLL命令 Sunny_SocketClientSetBufferSize, 逻辑型, "Sunny.dll", "@SocketClientSetBufferSize", , SocketClient客户端 接收数据 置缓冲区大小
+    .参数 Context
+    .参数 缓冲区大小, 整数型
+
+.DLL命令 Sunny_MustTcp, , "Sunny.dll", "@MustTcp"
+    .参数 MustTcp, 逻辑型
+
+.DLL命令 Sunny_CreateWebsocket, 整数型, "Sunny.dll", "@CreateWebsocket", , 创建一个WebSocket客户端 可用于WS/WSS
+
+.DLL命令 Sunny_RemoveWebsocket, , "Sunny.dll", "@RemoveWebsocket", , 移除WebSocket客户端
+    .参数 Context
+
+.DLL命令 Sunny_WebsocketDial, 逻辑型, "Sunny.dll", "@WebsocketDial", , WebSocket客户端连接
+    .参数 Context
+    .参数 url, 文本型
+    .参数 Headers, 文本型
+    .参数 回调地址, 整数型
+    .参数 同步模式, 逻辑型, , 如果为真 回调地址将无效
+    .参数 代理类型, 文本型, , s5/http 默认s5
+    .参数 代理地址, 文本型, , 例如127.0.0.1:8888
+    .参数 代理账号, 文本型
+    .参数 代理密码, 文本型
+    .参数 Sunny证书管理器Context, 整数型, , Sunny证书管理器Context
+
+.DLL命令 Sunny_WebsocketClose, , "Sunny.dll", "@WebsocketClose", , webSocket客户端 断开连接
+    .参数 Context
+
+.DLL命令 Sunny_WebsocketGetErr, 文本型, "Sunny.dll", "@WebsocketGetErr", , webSocket客户端 取错误信息
+    .参数 Context
+
+.DLL命令 Sunny_WebsocketReadWrite, 逻辑型, "Sunny.dll", "@WebsocketReadWrite", , webSocket客户端 发送数据，返回发送成功的字节数
+    .参数 Context
+    .参数 bin, 字节集
+    .参数 len, 整数型
+    .参数 Frame, 整数型
+
+.DLL命令 Sunny_WebsocketClientReceive, 整数型, "Sunny.dll", "@WebsocketClientReceive", , webSocket客户端 读取数据，仅再同步模式下有效
+    .参数 Context, 整数型
+    .参数 超时时间, 整数型
+    .参数 messageType, 整数型, 传址
+    .参数 len, 整数型, 传址
+
+.DLL命令 Sunny_ScriptCall, 整数型, "Sunny.dll", "@ScriptCall", , JS脚本CALL
+    .参数 type, 整数型
+    .参数 args, 文本型
+
+.DLL命令 Sunny_SetScript, , "Sunny.dll", "@SetScript", , JS脚本CALL
+    .参数 代码, 文本型
+
+.DLL命令 Sunny_GetRequestClientIp, 整数型, "Sunny.dll", "@GetRequestClientIp", , 获取HTTP请求来源地址
+    .参数 MessageId, 整数型
+
+.DLL命令 Sunny_SetTcpAgent, 逻辑型, "Sunny.dll", "@SetTcpAgent", , 给TCP请求设置S5代理。仅在TCP 即将连接时有效
+    .参数 MessageId, 整数型
+    .参数 ip, 文本型, , 127.0.0.1:8888 只能是S5类型代理
+    .参数 user, 文本型
+    .参数 pass, 文本型
+
+.DLL命令 Sunny_TcpCloseClient, 逻辑型, "Sunny.dll", "@TcpCloseClient", , 断开指定连接
+    .参数 唯一ID, 整数型
+
+.DLL命令 Sunny_SetScriptLogCallAddress, , "Sunny.dll", "@SetScriptLogCallAddress"
+    .参数 i, 整数型
