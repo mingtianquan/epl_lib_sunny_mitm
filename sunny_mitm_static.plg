@@ -6,14 +6,14 @@
 --------------------Configuration: sunny_mitm_static - Win32 Release--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\hai\AppData\Local\Temp\RSPAE7.tmp" with contents
+Creating temporary file "C:\Users\hai\AppData\Local\Temp\RSPF62A.tmp" with contents
 [
 /nologo /MT /W3 /GX /Od /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /D "__E_STATIC_LIB" /FR"Release/" /Fp"Release/sunny_mitm_static.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
-"D:\go\epl_lib_sunny_mitm\3rdparty\go_archive_mingw_shim.c"
-"D:\go\epl_lib_sunny_mitm\StdAfx.cpp"
-"D:\go\epl_lib_sunny_mitm\sunny_mitm.cpp"
+"C:\Users\hai\Desktop\epl_lib_sunny_mitm\3rdparty\go_archive_mingw_shim.c"
+"C:\Users\hai\Desktop\epl_lib_sunny_mitm\StdAfx.cpp"
+"C:\Users\hai\Desktop\epl_lib_sunny_mitm\sunny_mitm.cpp"
 ]
-Creating command line "cl.exe @C:\Users\hai\AppData\Local\Temp\RSPAE7.tmp" 
+Creating command line "cl.exe @C:\Users\hai\AppData\Local\Temp\RSPF62A.tmp" 
 Creating command line "link.exe -lib "3rdparty\sunny_mitm\x86\sunny_mitm.a" /nologo /out:"Release\sunny_mitm_static.lib"  .\Release\go_archive_mingw_shim.obj .\Release\StdAfx.obj .\Release\sunny_mitm.obj "
 <h3>Output Window</h3>
 Compiling...
