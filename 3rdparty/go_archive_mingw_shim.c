@@ -124,3 +124,52 @@ AddVectoredExceptionHandler(
     return func(First, Handler);
 
 }
+
+// Shim for WerSetFlags (Windows 7+)
+typedef HRESULT (WINAPI *WerSetFlags_t)(DWORD dwFlags);
+HRESULT WINAPI WerSetFlags(DWORD dwFlags) {
+    static WerSetFlags_t func = NULL;
+    if (!func) {
+        HMODULE h = GetModuleHandleA("kernel32.dll");
+        if (h) func = (WerSetFlags_t)GetProcAddress(h, "WerSetFlags");
+    }
+    if (func) return func(dwFlags);
+    return S_OK;
+}
+
+// Shim for WerGetFlags (Windows 7+)
+typedef HRESULT (WINAPI *WerGetFlags_t)(HANDLE hProcess, PDWORD pdwFlags);
+HRESULT WINAPI WerGetFlags(HANDLE hProcess, PDWORD pdwFlags) {
+    static WerGetFlags_t func = NULL;
+    if (!func) {
+        HMODULE h = GetModuleHandleA("kernel32.dll");
+        if (h) func = (WerGetFlags_t)GetProcAddress(h, "WerGetFlags");
+    }
+    if (func) return func(hProcess, pdwFlags);
+    if (pdwFlags) *pdwFlags = 0;
+    return S_OK;
+}
+
+// Shim for RaiseFailFastException (Windows 7+)
+typedef void (WINAPI *RaiseFailFastException_t)(PEXCEPTION_RECORD pExceptionRecord, PCONTEXT pContextRecord, DWORD dwFlags);
+void WINAPI RaiseFailFastException(PEXCEPTION_RECORD pExceptionRecord, PCONTEXT pContextRecord, DWORD dwFlags) {
+    static RaiseFailFastException_t func = NULL;
+    if (!func) {
+        HMODULE h = GetModuleHandleA("kernel32.dll");
+        if (h) func = (RaiseFailFastException_t)GetProcAddress(h, "RaiseFailFastException");
+    }
+    if (func) func(pExceptionRecord, pContextRecord, dwFlags);
+    else TerminateProcess(GetCurrentProcess(), 0xC0000409);
+}
+
+// Shim for GetErrorMode (Windows Vista+)
+typedef UINT (WINAPI *GetErrorMode_t)(void);
+UINT WINAPI GetErrorMode(void) {
+    static GetErrorMode_t func = NULL;
+    if (!func) {
+        HMODULE h = GetModuleHandleA("kernel32.dll");
+        if (h) func = (GetErrorMode_t)GetProcAddress(h, "GetErrorMode");
+    }
+    if (func) return func();
+    return 0;
+}

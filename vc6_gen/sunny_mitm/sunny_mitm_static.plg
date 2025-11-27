@@ -1,0 +1,44 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: sunny_mitm - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\hai\AppData\Local\Temp\RSPF7EF.tmp" with contents
+[
+/nologo /MT /W3 /GX /Od /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "_WINDLL" /D "_AFXDLL" /FR"Release/" /Fp"Release/sunny_mitm.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Users\hai\Desktop\epl_lib_sunny_mitm\vc6_gen\sunny_mitm\3rdparty\go_archive_mingw_shim.c"
+"C:\Users\hai\Desktop\epl_lib_sunny_mitm\vc6_gen\sunny_mitm\StdAfx.cpp"
+"C:\Users\hai\Desktop\epl_lib_sunny_mitm\vc6_gen\sunny_mitm\sunny_mitm.cpp"
+]
+Creating command line "cl.exe @C:\Users\hai\AppData\Local\Temp\RSPF7EF.tmp" 
+Creating temporary file "C:\Users\hai\AppData\Local\Temp\RSPF7F0.tmp" with contents
+[
+User32.lib 3rdparty\sunny_mitm\x86\sunny_mitm.a /nologo /subsystem:windows /dll /incremental:no /pdb:"Release/sunny_mitm.pdb" /machine:I386 /def:".\sunny_mitm.def" /out:"Release\sunny_mitm.fne" /implib:"Release/sunny_mitm.lib" 
+.\Release\go_archive_mingw_shim.obj
+.\Release\StdAfx.obj
+.\Release\sunny_mitm.obj
+]
+Creating command line "link.exe @C:\Users\hai\AppData\Local\Temp\RSPF7F0.tmp"
+<h3>Output Window</h3>
+Compiling...
+go_archive_mingw_shim.c
+StdAfx.cpp
+sunny_mitm.cpp
+Linking...
+sunny_mitm.a(000000.o) : warning LNK4078: multiple ".drectve" sections found with different attributes (C0300040)
+sunny_mitm.a(000000.o) : warning LNK4078: multiple ".drectve" sections found with different attributes (C0300040)
+   Creating library Release/sunny_mitm.lib and object Release/sunny_mitm.exp
+LINK : warning LNK4049: locally defined symbol "__beginthread" imported
+LINK : warning LNK4049: locally defined symbol "__errno" imported
+LINK : warning LNK4049: locally defined symbol "___acrt_iob_func" imported
+
+
+
+<h3>Results</h3>
+sunny_mitm.fne - 0 error(s), 5 warning(s)
+</pre>
+</body>
+</html>

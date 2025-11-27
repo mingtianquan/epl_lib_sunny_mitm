@@ -1,0 +1,7 @@
+; sunny_mitm.def : Declares the module parameters for the DLL.
+
+LIBRARY      "sunny_mitm"
+DESCRIPTION  'sunny_mitm Library'
+
+EXPORTS
+GetNewInf

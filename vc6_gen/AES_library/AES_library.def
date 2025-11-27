@@ -1,0 +1,7 @@
+; AES_library.def : Declares the module parameters for the DLL.
+
+LIBRARY      "AES_library"
+DESCRIPTION  'AES_library Library'
+
+EXPORTS
+GetNewInf
