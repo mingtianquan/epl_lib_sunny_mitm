@@ -99,7 +99,7 @@ ARG_INFO g_ArgInfo[] = {
 };
 
 CMD_INFO g_CmdInfo[] = {
-{/*名称       */_T("Aes_Encrypt")
+{/*名称       */_T("AesEncrypt")
 ,/*英文名     */_T("lib_AesEncrypt")
 ,/*说明       */NULL
 ,/*类别索引   */0
@@ -112,7 +112,7 @@ CMD_INFO g_CmdInfo[] = {
 ,/*参数个数   */5
 ,/*参数地址   */&g_ArgInfo[0]
 },
-{/*名称       */_T("Aes_Decrypt")
+{/*名称       */_T("AesDecrypt")
 ,/*英文名     */_T("lib_AesDecrypt")
 ,/*说明       */NULL
 ,/*类别索引   */0
